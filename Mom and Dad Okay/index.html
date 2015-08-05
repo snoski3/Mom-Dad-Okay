@@ -2,15 +2,138 @@
 <html>
 <head>
     <title></title>
-    <meta charset="utf-8" />
-    <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
-
+    <meta charset="utf-8">
+    <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet">
+    <link href="styles/main.css" rel="stylesheet">
     <script src="cordova.js"></script>
     <script src="kendo/js/jquery.min.js"></script>
     <script src="kendo/js/kendo.mobile.min.js"></script>
-    
+    <script src="https://bs-static.cdn.telerik.com/1.4.1/everlive.all.min.js"></script>
+    <script src="scripts/app.js"></script>
 </head>
 <body>
-    
+    <div data-role="view" id="login" data-title="Login" data-model="loginView">
+        <div data-role="navbar">
+            <span data-role="view-title"></span>
+            <a href="#register">Create an account</a>
+            <a href="#password">Forgot password?</a>
+        </div>
+        <form>
+            <ul data-role="listview" data-style="inset">
+                <li>
+                    <label>
+                        Username:<input type="text" name="username" data-bind="value: username">
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        Password:<input type="password" name="password" data-bind="value: password">
+                    </label>
+                </li>
+                <li>
+                    <button style="width: 100%" data-role="button" data-bind="click: submit">
+                        Login
+                    </button>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <div data-role="view" id="register" data-title="Register" data-model="registerView">
+        <div data-role="navbar">
+            <a href ="#login" data-align="left" data-role="button">Back</a>
+            <span data-role="view-title"></span>
+        </div>
+        <form>
+      <ul data-role="listview" data-style="inset">
+          <li>
+              <label>
+                  Email Address:
+                  <input type="email" name="email" data-bind="value: email">
+              </label>
+          </li>
+          <li>
+              <label>
+                  Username:
+                  <input type="text" name="username" data-bind="value: username">
+              </label>
+          </li>                
+          <li>
+              <label>
+                  Password:
+                  <input type="password" name="password" data-bind="value: password">
+              </label>
+          </li>
+          <li>
+              <button style="width: 100%" data-role="button" data-bind="click: submit">Register</button>
+          </li>
+      </ul>
+     </form>
+    </div>
+    <div data-role="view" id="password" data-title="Reset Password" data-model="passwordView">
+        <div data-role="navbar">
+            <a href="#login" data-align="left" data-role="button">Back</a>
+            <span data-role="view-title"></span>
+        </div>
+        <form>
+            <ul data-role="listview" data-style="inset">
+                <li>
+                    <label>
+                        Email Address:<input type="email" name="email" data-bind="value: email">
+                    </label>
+                </li>
+                <li>
+                    <button style="width: 100%" data-role="button" data-bind="click: submit">
+                        Reset
+                    </button>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <div data-role="view" id="list" data-title="Mom's Okay, Dad's Okay" data-model="listview">
+        <div data-role="navbar">
+            <span data-role="view-title"></span>      
+        </div>
+             <div data-role="footer">
+                <div data-role="navbar">
+                    <a data-role="button" data-align="left" data-bind="click: logout" href="#login">Logout</a>
+            	    <a data-role="button" data-align="right" data-rel="modalview" href="#add">Send A New Message</a>
+                </div>
+            </div>
+        <ul id="grocery-list"></ul>
+    </div>
+
+    <div data-role="modalview" id="add" style="width: 90%" data-model="addView">
+        <div data-role="header">
+            <div data-role="navbar">
+                <span>Send A New Message</span>
+            </div>
+        </div>
+        <ul data-role="listview" data-style="insert">
+            <li>
+                <h3 style="margin-bottom: 5em;">Message</h3>                
+                <select id="message" data-bind="value: grocery" style="width: 100%;"input type=$("#message").kendoDropDownList();>
+                	<option style="font-size:24px;" value="default">Choose a message to send.</option>
+                    <option style="font-size:24px;" value="I'm Okay.">I'm Okay.</option>
+                    <option style="font-size:24px;" value="I'm Awake.">I'm Awake.</option>
+                    <option style="font-size:24px;" value="I'm home.">I'm home.</option>
+                    <option style="font-size:24px;" value="I'm done.">I'm done.</option>
+                    <option style="font-size:24px;" value="I'm going to take a nap.">I'm going to take a nap.</option>
+                    <option style="font-size:24px;" value="I'm going to bed.">I'm going to bed.</option>
+                    <option style="font-size:24px;" value="I'm going to take a bath.">I'm going to take a bath.</option>
+                    <option style="font-size:24px;" value="I'm going to the bathroom.">I'm going to the bathroom.</option>
+                    <option style="font-size:24px;" value="Mom, are you okay?">Mom, are you okay?</option>  
+                    <option style="font-size:24px;" value="Dad, are you okay?">Dad, are you okay?</option>  
+                </select>
+            </li>
+        </ul>
+        <button data-bind="click: add" class="add-button" data-role="button">
+            Send
+        </button>
+        <button data-bind="click: close" class="close-button" data-role="button">
+            Close
+        </button>
+    </div>
+
+    </div>
 </body>
 </html>
